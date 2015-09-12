@@ -42,7 +42,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		pushButton.setOnClickListener(this);
 		popButton = (Button) findViewById(R.id.activity_main_pop_button);
 		popButton.setOnClickListener(this);
+		popButton.setVisibility(View.GONE);
 		clearButton = (Button) findViewById(R.id.activity_main_clear_button);
+		clearButton.setOnClickListener(this);
+		clearButton.setVisibility(View.GONE);
 		stackTextView = (TextView) findViewById(R.id.activity_main_stack_textview);
 	}
 
@@ -134,6 +137,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	private void popStack(){
 		
 		
+		
 	}
 
 	private void clearStack(){
@@ -151,6 +155,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		else
 		{
 			sb.append(TextUtils.join(",", stackArrayList));
+			
 			
 			sb.append("]");
 			
