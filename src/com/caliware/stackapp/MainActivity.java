@@ -150,18 +150,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		}
 		else
 		{
-			for(int i = 0; i < stackArrayList.size(); i++)
-			{
-				sb.append(stackArrayList.get(i).toString());
-				
-				if(stackArrayList.size() > 1)
-				{
-					if(i != 2)
-					{
-						sb.append(", ");
-					}
-				}
-			}
+			sb.append(TextUtils.join(",", stackArrayList));
 			
 			sb.append("]");
 			
