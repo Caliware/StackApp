@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainActivity>{
 
-	private MainActivity MainActivity;
+    private MainActivity MainActivity;
     private TextView FirstTestText;
     private Button pushButtonTest;
     private Button popButtonTest;
@@ -37,11 +37,11 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
         super.setUp();
         MainActivity = getActivity();
         
-        FirstTestText = (TextView) MainActivity.findViewById(R.id.activity_main_stack_textview);
+        /*FirstTestText = (TextView) MainActivity.findViewById(R.id.activity_main_stack_textview);
         setActivityInitialTouchMode(true);
         pushButtonTest = (Button) MainActivity.findViewById(R.id.activity_main_push_button);
         popButtonTest = (Button) MainActivity.findViewById(R.id.activity_main_pop_button);
-        clearButtonTest = (Button) MainActivity.findViewById(R.id.activity_main_clear_button);
+        clearButtonTest = (Button) MainActivity.findViewById(R.id.activity_main_clear_button);*/
 
     }	
 	/*
