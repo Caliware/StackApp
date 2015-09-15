@@ -124,10 +124,12 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
 	public void testvalidateInput()
 	{
 		MainActivity = new MainActivity();
-		assertFalse(MainActivity.validateInput("-1"));
-		assertFalse(MainActivity.validateInput("10")); 
-		assertFalse(MainActivity.validateInput("nothing"));
-		assertFalse(MainActivity.validateInput(""));
+		MainActivity.testMethod();
+		assertFalse(MainActivity.pushStack("-1"));
+		assertFalse(MainActivity.pushStack("10")); 
+		assertFalse(MainActivity.pushStack("nothing"));
+		assertFalse(MainActivity.pushStack(""));
+		MainActivity.endTestMethod();
 	}
 	/*
 	 * test the pushStack method
@@ -136,6 +138,7 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
 	public void testpushStack()
 	{
 		MainActivity = new MainActivity();
+		MainActivity.testMethod();
 		MainActivity.pushStack("1");
 		MainActivity.pushStack("2");
 		MainActivity.pushStack("3");
@@ -144,6 +147,7 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
 		assertEquals(3, MainActivity.get(2));
 		assertNotEquals(3, MainActivity.get(0));
 		assertNotEquals(2, MainActivity.get(2));
+		MainActivity.endTestMethod();
 		
 	}
 
