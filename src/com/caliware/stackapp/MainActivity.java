@@ -23,6 +23,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	private Button popButton;
 	private Button clearButton;
 	private TextView stackTextView;
+	private Boolean test = false;
 
 	private ArrayList<Integer> stackArrayList = new ArrayList<Integer>();
 
@@ -75,7 +76,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		{
 		case R.id.activity_main_push_button:
 		{
-			pushStack();
+			pushStack(stackInputEditText.getText().toString());
 			break;
 		}
 		case R.id.activity_main_pop_button:
@@ -97,7 +98,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 		String regex = "^[0-9]{1}$";
 
-		stackInputEditText.setError(null);
+	//	stackInputEditText.setError(null);
 
 		if(TextUtils.isEmpty(input) || !input.matches(regex))
 		{
@@ -112,23 +113,29 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		return success;
 	}
 
-	private void pushStack(){
+	private void pushStack(String input){
 
 		if(stackInputEditText != null)
 		{
-			String input = stackInputEditText.getText().toString();
+		//	String input = stackInputEditText.getText().toString();
 
 			if(validateInput(input))
 			{
 				if(stackArrayList.size() < 3)
 				{
 					stackArrayList.add(Integer.valueOf(input));
-					displayStack(false);
+					if(!test)
+					{
+						displayStack(false);
+					}
 				}
 				else
 				{
 //					errorPopUp(getString(R.string.push_error_full_stack));
-					displayStack(true);
+					if(!test)
+					{
+						displayStack(true);
+					}
 				}
 			}
 		}
@@ -182,5 +189,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
 						
 					}
 				}).show();
+	}
+	
+	public int get(int numberInList)
+	{
+		return stackArrayList.get(numberInList);
+	}
+	public void testMethod()
+	{
+		test = true;
+	}
+	public void endTestMethod()
+	{
+		test = false;
 	}
 }
