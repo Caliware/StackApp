@@ -37,9 +37,9 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
         super.setUp();
         MainActivity = getActivity();
         
-        /*FirstTestText = (TextView) MainActivity.findViewById(R.id.activity_main_stack_textview);
+        FirstTestText = (TextView) MainActivity.findViewById(R.id.activity_main_stack_textview);
         setActivityInitialTouchMode(true);
-        pushButtonTest = (Button) MainActivity.findViewById(R.id.activity_main_push_button);
+        /*pushButtonTest = (Button) MainActivity.findViewById(R.id.activity_main_push_button);
         popButtonTest = (Button) MainActivity.findViewById(R.id.activity_main_pop_button);
         clearButtonTest = (Button) MainActivity.findViewById(R.id.activity_main_clear_button);*/
 
