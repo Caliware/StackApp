@@ -44,6 +44,11 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
         clearButtonTest = (Button) MainActivity.findViewById(R.id.activity_main_clear_button);*/
 
     }	
+    
+    public void testPreconditions() {
+		assertNotNull("Activity is null", MainActivity);
+		assertNotNull("Text is null", FirstTestText);
+	}
 	/*
 	 * Verify the button layout parameters
 	 */
