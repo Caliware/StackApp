@@ -43,10 +43,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		pushButton.setOnClickListener(this);
 		popButton = (Button) findViewById(R.id.activity_main_pop_button);
 		popButton.setOnClickListener(this);
-		popButton.setVisibility(View.GONE);
 		clearButton = (Button) findViewById(R.id.activity_main_clear_button);
 		clearButton.setOnClickListener(this);
-		clearButton.setVisibility(View.GONE);
 		stackTextView = (TextView) findViewById(R.id.activity_main_stack_textview);
 	}
 
@@ -63,7 +61,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.exit) {
+			
+			finish();
+			
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -123,18 +124,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
 			{
 				if(stackArrayList.size() < 3)
 				{
+					
+					stackInputEditText.setText(null);
+					
 					stackArrayList.add(Integer.valueOf(input));
 					if(!test)
 					{
-						displayStack(false);
+						displayStack();
 					}
 				}
 				else
 				{
-//					errorPopUp(getString(R.string.push_error_full_stack));
+					errorPopUp(getString(R.string.push_error_full_stack));
 					if(!test)
 					{
-						displayStack(true);
+						displayStack();
 					}
 				}
 			}
@@ -143,15 +147,29 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 	private void popStack(){
 		
+		if (stackArrayList.size() > 0)
+		{
+			stackArrayList.remove(stackArrayList.size() - 1);
+			
+		}
+		else
+		{
+			errorPopUp(getString(R.string.stack_empty));
+		}
 		
+		displayStack();
 		
 	}
 
 	private void clearStack(){
-
+		
+		stackInputEditText.setText(null);
+		
+		stackArrayList.clear();
+		displayStack();
 	}
 	
-	private void displayStack(boolean full)
+	private void displayStack()
 	{
 		StringBuilder sb = new StringBuilder();
 		sb.append("[");
@@ -166,7 +184,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 			
 			sb.append("]");
 			
-			if(full)
+			if(stackArrayList.size() == 3)
 			{
 				sb.append("\n");
 				sb.append(getString(R.string.stack_full));

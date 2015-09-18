@@ -16,10 +16,11 @@
     
     <string name="ok">Ok</string>
     
-    <string name="push_error_full_stack">Stack is full!</string>
+    <string name="push_error_full_stack">Stack is already full!</string>
     
     <string name="stack_empty">Stack is empty...</string>
     
     <string name="stack_full">Stack is full...</string>
+    <string name="actionbar_exit">Exit</string>
 
 </resources>
