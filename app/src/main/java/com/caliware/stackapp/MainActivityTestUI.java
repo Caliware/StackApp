@@ -17,6 +17,7 @@ import android.test.ActivityUnitTestCase;
 import android.test.TouchUtils;
 import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.MediumTest;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -43,8 +44,6 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
 		// TODO Auto-generated constructor stub
 	}
 	/*
-	 * (non-Javadoc)
-	 * @see android.test.ActivityInst	rumentationTestCase2#setUp()
 	 * sets up the test environment
 	 */
 	@Before
@@ -61,7 +60,9 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
         clearButtonTest = (Button) MainActivity.findViewById(R.id.activity_main_clear_button);
         InfoTextView = (TextView) MainActivity.findViewById(R.id.activity_main_stack_textview);
     }	
-	
+	/*
+	 * method tears down the existing application
+	 */
 	@After
 	public void tearDown() throws Exception {
 		MainActivity = null;
@@ -90,7 +91,9 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
 	  mInstrumentation.waitForIdleSync();
 	 
 	}
-
+	/*
+	 * test the pop button layout
+	 */
 	@Test
 	public void testFPopClickButton_layout() throws InterruptedException {
 		Thread.sleep(3000);
@@ -109,6 +112,9 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
 		mInstrumentation.waitForIdleSync();
 	}
 	
+	/*
+	 * test the clear button layout
+	 */
 	@Test
 	public void testGClearClickButton_layout() throws InterruptedException {
 		Thread.sleep(3000);
@@ -153,10 +159,15 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
 		TouchUtils.clickView(this, pushButtonTest);
 		MainActivity.runOnUiThread(new Runnable() {
 			public void run() {
-				String expectedInfoText = MainActivity.getString(R.string.action_stack_push);
-				
-				assertTrue(View.VISIBLE == InfoTextView.getVisibility());
-				assertEquals(expectedInfoText, InfoTextView.getText());
+				pushButtonTest.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+						String expectedInfoText = MainActivity.getString(R.string.action_stack_push);
+						Log.v("Push", "Push");
+						assertTrue(View.VISIBLE == InfoTextView.getVisibility());
+						assertEquals(expectedInfoText, InfoTextView.getText());
+						
+					}
+				});
 			}
 		});
 		mInstrumentation.waitForIdleSync();
@@ -171,10 +182,18 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
 		Thread.sleep(3000);
 		MainActivity.runOnUiThread(new Runnable() {
 			public void run() {
-				String expectedInfoText = MainActivity.getString(R.string.action_stack_pop);
-	//			TouchUtils.clickView(this, popButtonTest);
-				assertTrue(View.VISIBLE == InfoTextView.getVisibility());
-				assertEquals(expectedInfoText, InfoTextView.getText());
+				popButtonTest.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+						String expectedInfoText = MainActivity.getString(R.string.action_stack_pop);
+						Log.v("Pop", "Pop");
+						assertTrue(View.VISIBLE == InfoTextView.getVisibility());
+						assertEquals(expectedInfoText, InfoTextView.getText());
+						
+					}
+				});
+				
+				
+				
 			}
 		});
 		mInstrumentation.waitForIdleSync();
@@ -187,10 +206,15 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
 		Thread.sleep(3000);
 		MainActivity.runOnUiThread(new Runnable() {
 			public void run() {
-				String expectedInfoText = MainActivity.getString(R.string.action_stack_clear);
-//				TouchUtils.clickView(this, clearButtonTest);
-				assertTrue(View.VISIBLE == InfoTextView.getVisibility());
-				assertEquals(expectedInfoText, InfoTextView.getText());
+				clearButtonTest.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+						String expectedInfoText = MainActivity.getString(R.string.action_stack_clear);
+						Log.v("Clear", "Clear");
+						assertTrue(View.VISIBLE == InfoTextView.getVisibility());
+						assertEquals(expectedInfoText, InfoTextView.getText());
+						
+					}
+				});
 			}
 		});
 	  
@@ -243,6 +267,8 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
 				Assert.assertEquals(3, MainActivity.get(2));
 			//	Assert.assertNotEquals(3, MainActivity.get(0));
 			//	Assert.assertNotEquals(2, MainActivity.get(2));
+				assertTrue(MainActivity.get(0) != 3);
+				assertTrue(MainActivity.get(2) != 2);
 				MainActivity.endTestMethod();
 			}
 		});
@@ -251,6 +277,9 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
 		
 	}
 	
+	/*
+	 * test the popStack() methods parameters
+	 */
 	public void testCPopStack() throws InterruptedException {
 		Thread.sleep(3000);
 		MainActivity.runOnUiThread(new Runnable() {
@@ -271,6 +300,9 @@ public class MainActivityTestUI extends ActivityInstrumentationTestCase2<MainAct
 		mInstrumentation.waitForIdleSync();
 	}
 	
+	/*
+	 * test the clearStack() method parameters
+	 */
 	public void testDClearStack() throws InterruptedException {
 		Thread.sleep(3000);
 		MainActivity.runOnUiThread(new Runnable() {
