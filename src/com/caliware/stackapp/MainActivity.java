@@ -61,10 +61,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.exit) {
-			
-			finish();
-			
+		if (id == R.id.action_settings) {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -93,13 +90,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		}
 	}
 
-	private Boolean validateInput(String input){
+	public Boolean validateInput(String input){
 
 		boolean success = false;
 
 		String regex = "^[0-9]{1}$";
 
-	//	stackInputEditText.setError(null);
+//		stackInputEditText.setError(null);
 
 		if(TextUtils.isEmpty(input) || !input.matches(regex))
 		{
@@ -114,19 +111,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		return success;
 	}
 
-	private void pushStack(String input){
-
+	public Boolean pushStack(String input){
+		
+		boolean success = true;
 		if(stackInputEditText != null)
 		{
-		//	String input = stackInputEditText.getText().toString();
+			//String input = stackInputEditText.getText().toString();
 
 			if(validateInput(input))
 			{
 				if(stackArrayList.size() < 3)
 				{
-					
-					stackInputEditText.setText(null);
-					
 					stackArrayList.add(Integer.valueOf(input));
 					if(!test)
 					{
@@ -142,10 +137,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
 					}
 				}
 			}
+			else
+			{
+				success = false;
+			}
 		}
+		return success;
 	}
 
-	private void popStack(){
+	public void popStack(){
 		
 		if (stackArrayList.size() > 0)
 		{
@@ -161,7 +161,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		
 	}
 
-	private void clearStack(){
+	public void clearStack(){
 		
 		stackInputEditText.setText(null);
 		
@@ -213,6 +213,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	{
 		return stackArrayList.get(numberInList);
 	}
+	public int getListSize()
+	{
+		return stackArrayList.size();
+	}
+	public Boolean isListEmpty()
+	{
+		if(stackArrayList.isEmpty())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	public void testMethod()
 	{
 		test = true;
@@ -221,4 +236,5 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	{
 		test = false;
 	}
+
 }
