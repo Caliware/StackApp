@@ -81,3 +81,4 @@ local.properties
 build/intermediates/dex-cache/cache.xml
 *.bin
 build/intermediates/gradle_project_sync_data.bin
+build/intermediates/gradle_project_sync_data.bin
