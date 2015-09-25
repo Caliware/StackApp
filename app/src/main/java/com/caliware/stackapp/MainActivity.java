@@ -63,6 +63,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		int id = item.getItemId();
 		if (id == R.id.exit) {
 			finish();
+			
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
